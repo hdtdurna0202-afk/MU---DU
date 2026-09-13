@@ -3,325 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mutlu Yıllar Murat | MU-DU</title>
+    <title>Doğum Günü Sürprizi - Murat İçin Özel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 1.5s ease-in-out, color 1.5s ease-in-out;
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
         }
 
-        body {
-            background-color: #0d0d0d;
-            color: #f0f0f0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            padding: 20px;
+        .font-serif-custom {
+            font-family: 'Playfair Display', serif;
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: #161616;
-            border: 2px solid #333;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            text-align: center;
-            position: relative;
+        /* Fotoğrafçı Stüdyosu Teması - Karanlık Mod (Vizör / Karanlık Oda Havası) */
+        .theme-dark {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        
+        /* Aydınlık Mod - Zarif Fotoğraf Stüdyosu Tonları */
+        .theme-light {
+            background-color: #f8fafc;
+            color: #1e293b;
         }
 
-        /* Ekranlar */
+        /* Ekran Geçiş Animasyonları */
         .screen {
-            display: none;
-            animation: fadeIn 0.6s ease-in-out forwards;
+            position: fixed;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(20px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .screen.active {
-            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            z-index: 10;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 1. Ekran: Karanlık ve Flaş Butonu */
-        #screen1 {
-            padding: 40px 0;
-        }
-
-        .lens-btn {
-            background: radial-gradient(circle, #333 0%, #111 80%);
-            border: 4px solid #555;
-            color: #fff;
-            font-size: 1.2rem;
-            padding: 25px 40px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .lens-btn:hover {
-            border-color: #d4af37;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-            transform: scale(1.05);
-        }
-
-        /* 2. Ekran: Mektup Zarfı */
-        .envelope {
-            background: #222;
-            border: 2px dashed #d4af37;
-            padding: 40px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin: 20px 0;
-        }
-
-        .envelope:hover {
-            background: #2a2a2a;
-            transform: translateY(-3px);
-        }
-
-        .envelope p {
-            font-size: 1.4rem;
-            color: #d4af37;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        /* Mektup Kağıdı */
-        .letter-paper {
-            background: #f4ecd8;
-            color: #2c2c2c;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: left;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            margin: 20px 0;
-            display: none;
-            position: relative;
-        }
-
-        .letter-paper.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* Butonlar */
-        .action-btn {
-            background-color: #d4af37;
-            color: #111;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .action-btn:hover {
-            background-color: #e6c55c;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-        }
-
-        /* 3. Ekran: Şarkılar */
-        h1.title-mu-du {
-            font-size: 2.8rem;
-            color: #d4af37;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(212,175,55,0.3);
-        }
-
-        .song-card {
-            background: #1f1f1f;
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 15px;
+        /* İçerikleri her ekranda esnek ve ortalanmış tutan kapsayıcı */
+        .screen-content {
+            min-height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            text-align: left;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            box-sizing: border-box;
         }
 
-        .song-info {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #fff;
+        /* Kamera Odak Çerçevesi (Viewfinder Frame) Efekti */
+        .viewfinder-frame {
+            position: relative;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            border-radius: 1.5rem;
+        }
+        .theme-light .viewfinder-frame {
+            border: 2px dashed rgba(0, 0, 0, 0.15);
         }
 
-        .song-buttons {
-            display: flex;
-            gap: 10px;
+        /* Köşe Nişangah İşaretleri (Kamera Vizör Efekti) */
+        .corner-mark {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: currentColor;
+            border-style: solid;
+            opacity: 0.6;
+        }
+        .top-left { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+        .top-right { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+        .bottom-left { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+        .bottom-right { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+        /* Bas Butonu Titreşim Animasyonu */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(244, 63, 94, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 0 40px rgba(244, 63, 94, 0.8); transform: scale(1.05); }
+        }
+        .btn-glow {
+            animation: pulse-glow 2s infinite;
         }
 
-        .btn-play, .btn-download {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
+        /* Zarf Sallanma Animasyonu */
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .envelope-container {
             cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-            text-align: center;
-            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        .envelope-container:hover {
+            transform: scale(1.05);
+        }
+        .envelope-container .badge {
+            animation: wiggle 1s infinite ease-in-out;
         }
 
-        .btn-play {
-            background-color: #3b82f6;
-            color: #fff;
+        /* Arka Plan Işık Sızıntıları (Light Leak / Bokeh) */
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 2s ease;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(60px);
+        }
+        .theme-light .decoration {
+            opacity: 0.5;
         }
 
-        .btn-play:hover {
-            background-color: #2563eb;
+        /* Film Şeridi / Fotoğraf Kağıdı Stili */
+        .photo-paper {
+            background-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 1px solid #e2e8f0;
         }
-
-        .btn-download {
-            background-color: #10b981;
-            color: #fff;
-        }
-
-        .btn-download:hover {
-            background-color: #059669;
-        }
-
-        /* Stüdyo Detayı */
-        .studio-tag {
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 15px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        
+        /* Özel Ses Çalar Özelleştirmesi */
+        audio {
+            width: 100%;
+            height: 38px;
+            outline: none;
+            border-radius: 9999px;
         }
     </style>
 </head>
-<body>
+<body class="theme-dark w-full h-screen relative">
 
-    <div class="container">
-        <!-- 1. Ekran: Başlangıç / Flaş -->
-        <div id="screen1" class="screen active">
-            <p style="margin-bottom: 20px; color: #aaa; font-size: 1.1rem;">Stüdyo Işıkları Kapalı...</p>
-            <button class="lens-btn" onclick="openStudio()">🔴 Flaşı Patlat & Başla</button>
-        </div>
+    <div class="decoration bg-rose-400 w-72 h-72 top-[-10%] left-[-10%]"></div>
+    <div class="decoration bg-amber-300 w-96 h-96 bottom-[-20%] right-[-10%]"></div>
+    <div class="decoration bg-sky-300 w-64 h-64 top-[30%] right-[10%]"></div>
 
-        <!-- 2. Ekran: Mektup -->
-        <div id="screen2" class="screen">
-            <div class="envelope" onclick="openLetter()">
-                <p>📩 Sana Bir Mektup Var (Tıkla)</p>
-            </div>
-            
-            <div id="letterPaper" class="letter-paper">
-                Canım kardeşim,<br><br>
-                Zaman su gibi akıp geçiyor ama bazı dostluklar ilk günkü gibi sağlam kalıyor. Hayat lensinin arkasından baktığında gördüğün en güzel karelerin, her anının mutlulukla dolması dileğiyle... Nice mutlu yıllara, nice benli senelere!<br><br>
-                <b>İyi ki varsın, kameraman!</b>
-            </div>
+    <!-- EKRAN 1: Başlangıç (Karanlık Oda / Vizör Ekranı) -->
+    <div id="screen-1" class="screen active">
+        <div class="screen-content">
+            <div class="viewfinder-frame flex flex-col items-center max-w-md w-full mx-auto text-center">
+                <div class="corner-mark top-left"></div>
+                <div class="corner-mark top-right"></div>
+                <div class="corner-mark bottom-left"></div>
+                <div class="corner-mark bottom-right"></div>
 
-            <button id="nextBtn" class="action-btn" style="display: none;" onclick="goToSongs()">Devam Et ➔</button>
-        </div>
-
-        <!-- 3. Ekran: Şarkılar -->
-        <div id="screen3" class="screen">
-            <h1 class="title-mu-du">MU - DU</h1>
-            
-            <!-- Şarkı 1 -->
-            <div class="song-card">
-                <div class="song-info">MU - DU Versiyon 1</div>
-                <div class="song-buttons">
-                    <button class="btn-play" onclick="playSong(1)">Dinle</button>
-                    <a href="sarki1.mp3" download="MU-DU_Versiyon_1.mp3" class="btn-download">İndir</a>
+                <div class="mb-6 text-rose-500 text-4xl">
+                    <i class="fa-solid fa-camera-retro"></i>
                 </div>
+                <p class="text-rose-400/80 mb-2 text-xs tracking-widest uppercase font-mono">[ FOCUS: ON ] - Özel Anı Kaydı</p>
+                <h1 class="text-2xl font-serif-custom mb-8 text-gray-200">Fotoğrafçının Doğum Günü Vizörü</h1>
+                
+                <button id="btn-bas" class="btn-glow px-12 py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full font-bold text-xl tracking-wider hover:opacity-90 transition-all shadow-lg flex items-center gap-3 mx-auto">
+                    <i class="fa-solid fa-power-off"></i> BAS
+                </button>
             </div>
-
-            <!-- Şarkı 2 -->
-            <div class="song-card">
-                <div class="song-info">MU - DU Versiyon 2</div>
-                <div class="song-buttons">
-                    <button class="btn-play" onclick="playSong(2)">Dinle</button>
-                    <a href="sarki2.mp3" download="MU-DU_Versiyon_2.mp3" class="btn-download">İndir</a>
-                </div>
-            </div>
-
-            <!-- Şarkı 3 -->
-            <div class="song-card">
-                <div class="song-info">MU - DU Versiyon 3</div>
-                <div class="song-buttons">
-                    <button class="btn-play" onclick="playSong(3)">Dinle</button>
-                    <a href="sarki3.mp3" download="MU-DU_Versiyon_3.mp3" class="btn-download">İndir</a>
-                </div>
-            </div>
-
-            <!-- Şarkı 4 -->
-            <div class="song-card">
-                <div class="song-info">MU - DU Versiyon 4</div>
-                <div class="song-buttons">
-                    <button class="btn-play" onclick="playSong(4)">Dinle</button>
-                    <a href="sarki4.mp3" download="MU-DU_Versiyon_4.mp3" class="btn-download">İndir</a>
-                </div>
-            </div>
-
-            <div class="studio-tag">Stüdyo Yüksel Prodüksiyon 🎬</div>
         </div>
     </div>
 
-    <!-- Ses Elementleri -->
-    <audio id="audio1" src="sarki1.mp3" preload="none"></audio>
-    <audio id="audio2" src="sarki2.mp3" preload="none"></audio>
-    <audio id="audio3" src="sarki3.mp3" preload="none"></audio>
-    <audio id="audio4" src="sarki4.mp3" preload="none"></audio>
+    <!-- EKRAN 2: Zarf (Film Kutusu / Mektup Zarfı) -->
+    <div id="screen-2" class="screen">
+        <div class="screen-content">
+            <div id="envelope" class="envelope-container relative flex flex-col items-center">
+                <!-- Tıkla Etiketi -->
+                <div class="badge absolute -top-6 -right-6 bg-rose-500 text-white font-bold px-4 py-2 rounded-full shadow-lg z-20 transform rotate-12 text-sm flex items-center gap-1">
+                    <i class="fa-regular fa-hand-pointer"></i> Tıkla!
+                </div>
+                
+                <!-- Zarf SVG İkonu -->
+                <div class="text-rose-400 drop-shadow-2xl">
+                    <svg width="240" height="180" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z" fill="#fda4af"/>
+                        <path d="M2.58579 7.41421L10.5858 15.4142C11.3668 16.1953 12.6332 16.1953 13.4142 15.4142L21.4142 7.41421" stroke="#e11d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <p class="mt-8 text-gray-600 dark:text-gray-300 font-medium tracking-wide text-center">Destant Vizöründen Bir Mesajın Var...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EKRAN 3: Mektup (Fotoğraf Kağıdı Üzerinde Mesaj) -->
+    <div id="screen-3" class="screen">
+        <div class="screen-content">
+            <div class="photo-paper max-w-lg w-full rounded-2xl p-8 md:p-12 relative mx-auto text-gray-800">
+                <!-- Ataş İkonu -->
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 text-rose-500 text-3xl bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
+                    <i class="fa-solid fa-paperclip"></i>
+                </div>
+                
+                <div class="font-handwriting text-2xl md:text-3xl text-gray-700 leading-relaxed mt-4">
+                    <p class="mb-4 text-3xl md:text-4xl font-bold text-rose-600 text-center font-serif-custom">Canım Kardeşim,</p>
+                    <p class="mb-6 text-center">
+                        Nice mutlu yıllara, nice benli senelere... Hayatın boyunca her anı en güzel karelerle yakalaman dileğiyle. İyi ki varsın! 📸✨
+                    </p>
+                    <p class="text-right text-xl font-bold text-gray-900 mt-8">
+                        Doğum günün kutlu olsun! 🎂
+                    </p>
+                </div>
+                
+                <div class="mt-10 flex justify-center">
+                    <button id="btn-devam" class="group relative px-8 py-3 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full font-semibold overflow-hidden shadow-md hover:shadow-xl transition-all hover:scale-105 flex items-center gap-2">
+                        <span>Devam Et</span> <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EKRAN 4: MU - DU Şarkıları (4 Versiyon - Ses Stüdyosu / Albüm Kapağı Tasarımı) -->
+    <div id="screen-4" class="screen">
+        <div class="screen-content">
+            <div class="max-w-2xl w-full bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-10 border border-white/50 mx-auto text-gray-900 my-auto">
+                
+                <div class="text-center mb-8">
+                    <div class="inline-block p-3 bg-rose-100 text-rose-600 rounded-2xl mb-3 shadow-inner">
+                        <i class="fa-solid fa-compact-disc fa-spin text-3xl" style="animation-duration: 8s;"></i>
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-600 font-serif-custom mb-1">
+                        MU - DU
+                    </h1>
+                    <p class="text-gray-500 font-medium tracking-widest uppercase text-xs">Özel Beste Arşivi (4 Versiyon)</p>
+                </div>
+
+                <div class="space-y-4 max-h-[55vh] overflow-y-auto pr-1">
+                    <!-- Şarkı 1 -->
+                    <div class="bg-gray-50 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-rose-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center text-rose-600 text-lg shadow-sm">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <h2 class="text-lg font-bold text-gray-800">MU - DU Versiyon 1</h2>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 items-center">
+                            <div class="flex-1 w-full">
+                                <audio controls class="w-full">
+                                    <source src="sarki1.mp3" type="audio/mpeg">
+                                    Tarayıcınız ses öğesini desteklemiyor.
+                                </audio>
+                            </div>
+                            <a href="sarki1.mp3" download="MUDU_Versiyon_1.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                                <i class="fas fa-download"></i> İndir
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Şarkı 2 -->
+                    <div class="bg-gray-50 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-rose-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-lg shadow-sm">
+                                <i class="fas fa-compact-disc"></i>
+                            </div>
+                            <h2 class="text-lg font-bold text-gray-800">MU - DU Versiyon 2</h2>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 items-center">
+                            <div class="flex-1 w-full">
+                                <audio controls class="w-full">
+                                    <source src="sarki2.mp3" type="audio/mpeg">
+                                    Tarayıcınız ses öğesini desteklemiyor.
+                                </audio>
+                            </div>
+                            <a href="sarki2.mp3" download="MUDU_Versiyon_2.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                                <i class="fas fa-download"></i> İndir
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Şarkı 3 -->
+                    <div class="bg-gray-50 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-rose-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 text-lg shadow-sm">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <h2 class="text-lg font-bold text-gray-800">MU - DU Versiyon 3</h2>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 items-center">
+                            <div class="flex-1 w-full">
+                                <audio controls class="w-full">
+                                    <source src="sarki3.mp3" type="audio/mpeg">
+                                    Tarayıcınız ses öğesini desteklemiyor.
+                                </audio>
+                            </div>
+                            <a href="sarki3.mp3" download="MUDU_Versiyon_3.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                                <i class="fas fa-download"></i> İndir
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Şarkı 4 -->
+                    <div class="bg-gray-50 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-rose-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 text-lg shadow-sm">
+                                <i class="fas fa-sliders"></i>
+                            </div>
+                            <h2 class="text-lg font-bold text-gray-800">MU - DU Versiyon 4</h2>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 items-center">
+                            <div class="flex-1 w-full">
+                                <audio controls class="w-full">
+                                    <source src="sarki4.mp3" type="audio/mpeg">
+                                    Tarayıcınız ses öğesini desteklemiyor.
+                                </audio>
+                            </div>
+                            <a href="sarki4.mp3" download="MUDU_Versiyon_4.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                                <i class="fas fa-download"></i> İndir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center text-rose-500 font-handwriting text-2xl">
+                    İyi ki doğdun Murat! 🎬🎂
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        let currentAudio = null;
-
-        function openStudio() {
-            document.getElementById('screen1').classList.remove('active');
-            document.getElementById('screen2').classList.add('active');
-        }
-
-        function openLetter() {
-            document.getElementById('letterPaper').classList.add('show');
-            document.getElementById('nextBtn').style.display = 'inline-block';
-        }
-
-        function goToSongs() {
-            document.getElementById('screen2').classList.remove('active');
-            document.getElementById('screen3').classList.add('active');
-        }
-
-        function playSong(num) {
-            let audio = document.getElementById('audio' + num);
-            
-            // Eğer başka bir şarkı çalıyorsa durdur
-            if (currentAudio && currentAudio !== audio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
+        document.addEventListener('DOMContentLoaded', () => {
+            function switchScreen(hideId, showId) {
+                const hideElement = document.getElementById(hideId);
+                const showElement = document.getElementById(showId);
+                
+                hideElement.classList.remove('active');
+                
+                setTimeout(() => {
+                    showElement.classList.add('active');
+                }, 800);
             }
 
-            if (audio.paused) {
-                audio.play().then(() => {
-                    currentAudio = audio;
-                }).catch(e => {
-                    alert("Şarkı yüklenirken veya çalınırken bir hata oluştu. Dosya adını kontrol edin.");
-                });
-            } else {
-                audio.pause();
-                currentAudio = null;
-            }
-        }
+            // 1. BAS Butonu: Karanlıktan stüdyo aydınlığına geçiş
+            document.getElementById('btn-bas').addEventListener('click', () => {
+                document.body.classList.remove('theme-dark');
+                document.body.classList.add('theme-light');
+                switchScreen('screen-1', 'screen-2');
+            });
+
+            // 2. Zarf Tıklama: Mektuba geçiş
+            document.getElementById('envelope').addEventListener('click', () => {
+                switchScreen('screen-2', 'screen-3');
+            });
+
+            // 3. Devam Et Butonu: 4 versiyonlu şarkı stüdyosuna geçiş
+            document.getElementById('btn-devam').addEventListener('click', () => {
+                switchScreen('screen-3', 'screen-4');
+            });
+        });
     </script>
 </body>
 </html>
