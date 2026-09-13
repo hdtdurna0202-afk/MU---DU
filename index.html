@@ -25,7 +25,7 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Fotoğrafçı Stüdyosu Teması - Karanlık Mod (Vizör / Karanlık Oda Havası) */
+        /* Fotoğrafçı Stüdyosu Teması - Karanlık Mod */
         .theme-dark {
             background-color: #0b0f19;
             color: #f3f4f6;
@@ -82,7 +82,7 @@
             border: 2px dashed rgba(0, 0, 0, 0.15);
         }
 
-        /* Köşe Nişangah İşaretleri (Kamera Vizör Efekti) */
+        /* Köşe Nişangah İşaretleri */
         .corner-mark {
             position: absolute;
             width: 20px;
@@ -121,7 +121,7 @@
             animation: wiggle 1s infinite ease-in-out;
         }
 
-        /* Arka Plan Işık Sızıntıları (Light Leak / Bokeh) */
+        /* Arka Plan Işık Sızıntıları */
         .decoration {
             position: absolute;
             border-radius: 50%;
@@ -142,7 +142,6 @@
             border: 1px solid #e2e8f0;
         }
         
-        /* Özel Ses Çalar Özelleştirmesi */
         audio {
             width: 100%;
             height: 38px;
@@ -183,12 +182,10 @@
     <div id="screen-2" class="screen">
         <div class="screen-content">
             <div id="envelope" class="envelope-container relative flex flex-col items-center">
-                <!-- Tıkla Etiketi -->
                 <div class="badge absolute -top-6 -right-6 bg-rose-500 text-white font-bold px-4 py-2 rounded-full shadow-lg z-20 transform rotate-12 text-sm flex items-center gap-1">
                     <i class="fa-regular fa-hand-pointer"></i> Tıkla!
                 </div>
                 
-                <!-- Zarf SVG İkonu -->
                 <div class="text-rose-400 drop-shadow-2xl">
                     <svg width="240" height="180" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z" fill="#fda4af"/>
@@ -204,7 +201,6 @@
     <div id="screen-3" class="screen">
         <div class="screen-content">
             <div class="photo-paper max-w-lg w-full rounded-2xl p-8 md:p-12 relative mx-auto text-gray-800">
-                <!-- Ataş İkonu -->
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 text-rose-500 text-3xl bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
                     <i class="fa-solid fa-paperclip"></i>
                 </div>
@@ -228,7 +224,7 @@
         </div>
     </div>
 
-    <!-- EKRAN 4: MU - DU Şarkıları (4 Versiyon - Ses Stüdyosu / Albüm Kapağı Tasarımı) -->
+    <!-- EKRAN 4: MU - DU Şarkıları (4 Versiyon) -->
     <div id="screen-4" class="screen">
         <div class="screen-content">
             <div class="max-w-2xl w-full bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-10 border border-white/50 mx-auto text-gray-900 my-auto">
@@ -254,12 +250,12 @@
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3 items-center">
                             <div class="flex-1 w-full">
-                                <audio controls class="w-full">
-                                    <source src="sarki1.mp3" type="audio/mpeg">
+                                <audio controls preload="metadata" class="w-full">
+                                    <source src="./sarki1.mp3" type="audio/mpeg">
                                     Tarayıcınız ses öğesini desteklemiyor.
                                 </audio>
                             </div>
-                            <a href="sarki1.mp3" download="MUDU_Versiyon_1.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                            <a href="./sarki1.mp3" download="MUDU_Versiyon_1.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
                                 <i class="fas fa-download"></i> İndir
                             </a>
                         </div>
@@ -275,12 +271,12 @@
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3 items-center">
                             <div class="flex-1 w-full">
-                                <audio controls class="w-full">
-                                    <source src="sarki2.mp3" type="audio/mpeg">
+                                <audio controls preload="metadata" class="w-full">
+                                    <source src="./sarki2.mp3" type="audio/mpeg">
                                     Tarayıcınız ses öğesini desteklemiyor.
                                 </audio>
                             </div>
-                            <a href="sarki2.mp3" download="MUDU_Versiyon_2.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                            <a href="./sarki2.mp3" download="MUDU_Versiyon_2.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
                                 <i class="fas fa-download"></i> İndir
                             </a>
                         </div>
@@ -296,12 +292,12 @@
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3 items-center">
                             <div class="flex-1 w-full">
-                                <audio controls class="w-full">
-                                    <source src="sarki3.mp3" type="audio/mpeg">
+                                <audio controls preload="metadata" class="w-full">
+                                    <source src="./sarki3.mp3" type="audio/mpeg">
                                     Tarayıcınız ses öğesini desteklemiyor.
                                 </audio>
                             </div>
-                            <a href="sarki3.mp3" download="MUDU_Versiyon_3.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                            <a href="./sarki3.mp3" download="MUDU_Versiyon_3.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
                                 <i class="fas fa-download"></i> İndir
                             </a>
                         </div>
@@ -317,12 +313,12 @@
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3 items-center">
                             <div class="flex-1 w-full">
-                                <audio controls class="w-full">
-                                    <source src="sarki4.mp3" type="audio/mpeg">
+                                <audio controls preload="metadata" class="w-full">
+                                    <source src="./sarki4.mp3" type="audio/mpeg">
                                     Tarayıcınız ses öğesini desteklemiyor.
                                 </audio>
                             </div>
-                            <a href="sarki4.mp3" download="MUDU_Versiyon_4.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
+                            <a href="./sarki4.mp3" download="MUDU_Versiyon_4.mp3" class="w-full sm:w-auto px-5 py-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-90 text-white rounded-xl font-medium text-sm text-center shadow-sm flex items-center justify-center gap-2 transition-all">
                                 <i class="fas fa-download"></i> İndir
                             </a>
                         </div>
@@ -349,19 +345,19 @@
                 }, 800);
             }
 
-            // 1. BAS Butonu: Karanlıktan stüdyo aydınlığına geçiş
+            // 1. BAS Butonu
             document.getElementById('btn-bas').addEventListener('click', () => {
                 document.body.classList.remove('theme-dark');
                 document.body.classList.add('theme-light');
                 switchScreen('screen-1', 'screen-2');
             });
 
-            // 2. Zarf Tıklama: Mektuba geçiş
+            // 2. Zarf Tıklama
             document.getElementById('envelope').addEventListener('click', () => {
                 switchScreen('screen-2', 'screen-3');
             });
 
-            // 3. Devam Et Butonu: 4 versiyonlu şarkı stüdyosuna geçiş
+            // 3. Devam Et Butonu
             document.getElementById('btn-devam').addEventListener('click', () => {
                 switchScreen('screen-3', 'screen-4');
             });
